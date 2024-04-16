@@ -86,7 +86,7 @@ if (this.email.includes('uets.edu.ec')&&this.email.includes('.')){
   
 
 
-    this._apiService.getStudents().subscribe((res:any)=>{   
+    this._apiService.getStudents().then((res:any)=>{   
 
 
       if(res.some((item: { email: any; }) => item.email === this.email)){
@@ -100,16 +100,16 @@ this.presentToastBad("Ya existe un usuario con ese correo");
           console.log(this.name,this.lastName,this.password,this.email);
      
         
-    this._apiService.getStudents().subscribe((res:any)=>{
+    this._apiService.getStudents().then((res:any)=>{
     
       const estudianteEncontrado = res.find((estudiante: any) => estudiante.email === this.email);
       const idEstudiante = estudianteEncontrado.id;
       localStorage.setItem("id", estudianteEncontrado.id);
     
     
-    },(error: any)=>{ 
+    }).catch(error =>{ 
       console.log("ERROR ===", error);
-    })
+    });
     
     if (!this.email.includes('.est') ) {
      
@@ -124,7 +124,7 @@ this.presentToastBad("Ya existe un usuario con ese correo");
       })
       }
 
-    },(error: any)=>{ 
+    }).catch(error =>{ 
       console.log("ERROR ===", error);
     })
 

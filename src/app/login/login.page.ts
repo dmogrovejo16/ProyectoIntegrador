@@ -43,7 +43,7 @@ result:any[] | undefined;
 
   if(this.email!="" && this.password!=""){
    
-    this._apiService.getStudents().subscribe((res:any)=>{
+    this._apiService.getStudents().then((res:any)=>{
       console.log("SUCCESS ===", res);
       console.log(this.email);
       
@@ -93,9 +93,9 @@ result:any[] | undefined;
         this.presentToast('Datos incorrectos');
 
       }
-    },(error: any)=>{ 
+    }).catch(error =>{ 
       console.log("ERROR ===", error);
-    })
+    });
 
   
     }else{
